@@ -7,6 +7,12 @@ export const useWebSocket = (onOrderReceived: (order: Order) => void) => {
   const [isConnected, setIsConnected] = useState(false);
   const wsRef = useRef<WebSocket | null>(null);
   const reconnectTimeoutRef = useRef<number | undefined>(undefined);
+  const callbackRef = useRef(onOrderReceived);
+
+  // Callback'i her zaman güncel tut
+  useEffect(() => {
+    callbackRef.current = onOrderReceived;
+  }, [onOrderReceived]);
 
   const connect = () => {
     try {
@@ -21,7 +27,7 @@ export const useWebSocket = (onOrderReceived: (order: Order) => void) => {
         try {
           const data = JSON.parse(event.data);
           if (data.type === 'new_order' && data.order) {
-            onOrderReceived(data.order);
+            callbackRef.current(data.order);
           }
         } catch (error) {
           console.error('Error parsing message:', error);
@@ -59,7 +65,7 @@ export const useWebSocket = (onOrderReceived: (order: Order) => void) => {
         wsRef.current.close();
       }
     };
-  }, [onOrderReceived]);
+  }, []);
 
   return { isConnected };
 };

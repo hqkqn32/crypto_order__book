@@ -8,6 +8,8 @@ export const Navbar = () => {
   const handleLogout = () => {
     logout();
     navigate('/login');
+    window.location.reload();
+
   };
 
   return (

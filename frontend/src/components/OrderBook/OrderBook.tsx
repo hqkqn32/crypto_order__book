@@ -29,9 +29,17 @@ export const OrderBook = () => {
 
   const handleNewOrder = useCallback((order: Order) => {
     if (order.order_type === 'buy') {
-      setBuyOrders((prev) => [order, ...prev]);
+      setBuyOrders((prev) => {
+        // Eğer order zaten varsa ekleme
+        if (prev.some(o => o.id === order.id)) return prev;
+        return [order, ...prev];
+      });
     } else {
-      setSellOrders((prev) => [order, ...prev]);
+      setSellOrders((prev) => {
+        // Eğer order zaten varsa ekleme
+        if (prev.some(o => o.id === order.id)) return prev;
+        return [order, ...prev];
+      });
     }
   }, []);
 
@@ -61,7 +69,7 @@ export const OrderBook = () => {
           </div>
           
           <div>
-            <OrderForm onOrderCreated={fetchOrders} />
+            <OrderForm onOrderCreated={() => {}} />
           </div>
         </div>
       </div>

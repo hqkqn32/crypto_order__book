@@ -1,6 +1,8 @@
 module crypto-orderbook
 
-go 1.25.4
+go 1.24.0
+
+toolchain go1.24.10
 
 require (
 	github.com/gofiber/fiber/v2 v2.52.10
