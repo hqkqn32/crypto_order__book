@@ -23,7 +23,7 @@ cd crypto-orderbook
 docker-compose up --build
 ```
 
-3-4 dakika bekle, sonra `http://localhost:3000` adresinden açabilirsin.
+ Sonra `http://localhost:3000` adresinden açabilirsin.
 
 ## Kullanım
 
@@ -31,7 +31,7 @@ docker-compose up --build
 2. Login yap
 3. Sağdaki formdan sipariş ver (buy ya da sell)
 4. Sol tarafta siparişlerin görünüyor
-5. Başka bir tarayıcıdan farklı kullanıcıyla gir, sipariş ver - ilk kullanıcı da anlık görüyor
+5. Başka bir tarayıcıdan veya gizli sekmeden farklı kullanıcıyla gir, sipariş ver. Aksi halde local storge paylaşımından dolayı sorun çıkıyor. 
 
 ## Ayarlar
 
@@ -99,7 +99,7 @@ npm install
 npm run dev
 ```
 
-PostgreSQL'in çalışıyor olması lazım tabii.
+PostgreSQL'in bunları yapacak kişinin bilgisayarında çalışıyor olması lazım bunları olabilmesi için. 
 
 ## Mimari
 
@@ -116,12 +116,6 @@ Real-time kısım şöyle çalışıyor: Sipariş oluşturulunca backend hem dat
 - SQL injection'a karşı prepared statement'lar var
 - CORS sadece belirli origin'lere açık
 
-## Notlar
 
-Production'da JWT_SECRET ve DB_PASSWORD'ü mutlaka değiştir. Şu an development için basit değerler kullanıyorum.
 
-Frontend Nginx ile serve ediliyor container'da. Backend port'u 8080, frontend 3000'de.
 
-## Lisans
-
-MIT
