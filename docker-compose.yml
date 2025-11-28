@@ -34,7 +34,7 @@ services:
       DB_PASSWORD: 123456
       DB_NAME: postgres
       DB_SSLMODE: disable
-      JWT_SECRET: your-super-secret-key-change-this-in-production
+      JWT_SECRET: dsaasdsadsşaxasxölasxölaxöl
       JWT_EXPIRE_HOURS: 24
     depends_on:
       postgres:
